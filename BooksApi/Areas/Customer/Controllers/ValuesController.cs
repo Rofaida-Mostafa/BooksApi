@@ -18,7 +18,7 @@ namespace BooksApi.Areas.Customer.Controllers
         }
 
         [HttpGet("")]
-        public async Task<IActionResult> Index(BookFilterRequest bookFilterRequest, int page = 1)
+        public async Task<IActionResult> Index([FromQuery]BookFilterRequest bookFilterRequest, int page = 1)
         {
             var books = (await _bookRepository.GetAllAsync(includes: [e => e.Category])).AsQueryable();
 
@@ -47,6 +47,7 @@ namespace BooksApi.Areas.Customer.Controllers
                 books,
                 bookFilterRequest.BookName,
                 bookFilterRequest.CategoryId,
+                bookFilterRequest.Price,
                 totalPages,
                 currentPage,
                 categories

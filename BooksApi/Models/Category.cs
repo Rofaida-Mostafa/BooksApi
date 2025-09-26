@@ -21,6 +21,6 @@ public partial class Category
     public bool Status { get; set; } = true;
 
     [InverseProperty("Category")]
-   // [JsonIgnore]
+   [JsonIgnore]
     public virtual ICollection<Book> Books { get; set; } = new List<Book>();
 }
